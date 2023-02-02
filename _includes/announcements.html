@@ -1,5 +1,5 @@
-{% assign all_events = site.events | concat: site.lectures %}
-{% assign all_events = all_events | concat: site.assignments %}
+{% assign all_events = site.events | push: site.lectures %}
+{% assign all_events = all_events | push: site.assignments %}
 
 {% assign events_to_show = "" | split: "" %}
 {% for e in all_events %}
@@ -8,7 +8,7 @@
     {% endunless %}
 {% endfor %}
 
-{% assign all_events = events_to_show | concat: site.announcements %}
+{% assign all_events = events_to_show | push: site.announcements %}
 {% assign all_events_sorted = all_events | sort: 'date' | reverse %}
 
 {% if all_events_sorted.size > 0 %}
